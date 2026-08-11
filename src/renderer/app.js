@@ -30,6 +30,10 @@ const form = {
   ),
 
   generateContract: document.getElementById("generateContract"),
+
+  createInvoiceFromContract: document.getElementById(
+  "createInvoiceFromContract"
+),
 };
 
 function setCurrentContractDateTime() {
@@ -416,3 +420,33 @@ function validateContractData(data) {
     console.error("Error al renderizar el contrato:", error);
   }
 });
+
+async function createInvoiceFromContract() {
+  console.log("Crear factura desde contrato: botón pulsado");
+
+  const contractData = await getContractData();
+
+  console.log("Contract data:", contractData);
+
+  const errors = validateContractData(contractData);
+
+  if (errors.length > 0) {
+    console.error("Contrato incompleto:", errors);
+    return;
+  }
+
+  console.log(
+    "Datos preparados para Facturix:",
+    contractData
+  );
+
+  const result =
+  await window.contractAPI.launchFacturix(contractData);
+
+console.log("Facturix launch result:", result);
+}
+
+form.createInvoiceFromContract.addEventListener(
+  "click",
+  createInvoiceFromContract
+);

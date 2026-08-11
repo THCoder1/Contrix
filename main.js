@@ -9,6 +9,10 @@ const {
 
 const path = require("node:path");
 const fs = require("node:fs");
+const { spawn } = require("node:child_process");
+
+const FACTURIX_EXE =
+  "D:\\Projects\\AUTOESCANDINAVIA\\Autoescandinavia-Invoices\\release\\win-unpacked\\Facturix Invoicing System.exe";
 
 const { renderContract } = require("./src/services/template");
 
@@ -26,6 +30,43 @@ const previewContracts = new Map();
 
 ipcMain.handle("seller:get", () => {
   return SELLER;
+});
+
+ipcMain.handle("facturix:launch", async (_event, contractData) => {
+  try {
+    const contractFile = path.join(
+      app.getPath("temp"),
+      "autoescandinavia-contract.json"
+    );
+
+    fs.writeFileSync(
+      contractFile,
+      JSON.stringify(contractData, null, 2),
+      "utf8"
+    );
+
+    const facturix = spawn(
+      FACTURIX_EXE,
+      [`--contract-file=${contractFile}`],
+      {
+        detached: true,
+        stdio: "ignore",
+      }
+    );
+
+    facturix.unref();
+
+    return {
+      launched: true,
+    };
+  } catch (error) {
+    console.error("Error launching Facturix:", error);
+
+    return {
+      launched: false,
+      error: error.message,
+    };
+  }
 });
 
 

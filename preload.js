@@ -14,4 +14,7 @@ contextBridge.exposeInMainWorld("contractAPI", {
 
   requestSavePdf: () =>
     ipcRenderer.invoke("contract:request-save-pdf"),
+
+  launchFacturix: (contractData) =>
+  ipcRenderer.invoke("facturix:launch", contractData),
 });
