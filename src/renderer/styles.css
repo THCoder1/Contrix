@@ -1,0 +1,225 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #1f2937;
+  background: #f3f4f6;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #f3f4f6;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+/* HEADER */
+
+.app-header {
+  padding: 22px 40px;
+  background: #14233b;
+  color: #ffffff;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.app-header p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  opacity: 0.75;
+}
+
+/* MAIN CONTAINER */
+
+.contract-container {
+  width: min(1000px, calc(100% - 40px));
+  margin: 35px auto 60px;
+}
+
+.page-title {
+  margin-bottom: 25px;
+}
+
+.page-title h2 {
+  margin: 0 0 6px;
+  font-size: 28px;
+}
+
+.page-title p {
+  margin: 0;
+  color: #6b7280;
+}
+
+/* SECTIONS */
+
+.form-section {
+  margin-bottom: 22px;
+  padding: 25px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+}
+
+.section-header {
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.section-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* FORM GRID */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.form-group input {
+  width: 100%;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  outline: none;
+  background: #ffffff;
+  color: #111827;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.form-group input:focus {
+  border-color: #14233b;
+  box-shadow: 0 0 0 3px rgba(20, 35, 59, 0.1);
+}
+
+/* PRICE */
+
+.price-field {
+  max-width: 300px;
+}
+
+.price-field input {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* CHECKBOXES */
+
+.checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 14px;
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+.checkbox-row:last-child {
+  margin-bottom: 0;
+}
+
+.checkbox-row input {
+  width: 17px;
+  height: 17px;
+  margin-top: 2px;
+  accent-color: #14233b;
+}
+
+/* ACTIONS */
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 5px;
+}
+
+.primary-button {
+  border: 0;
+  border-radius: 8px;
+  padding: 13px 24px;
+  background: #14233b;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.primary-button:hover {
+  opacity: 0.9;
+}
+
+.primary-button:active {
+  transform: translateY(1px);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+  .app-header {
+    padding: 20px;
+  }
+
+  .contract-container {
+    width: calc(100% - 24px);
+    margin-top: 20px;
+  }
+
+  .form-section {
+    padding: 20px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full-width {
+    grid-column: auto;
+  }
+
+  .price-field {
+    max-width: none;
+  }
+}

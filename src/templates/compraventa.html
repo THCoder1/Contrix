@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <title>Contrato de Compraventa - Auto Escandinavia</title>
+
+  <style>
+        @page {
+      size: A4;
+      margin: 12mm 14mm 12mm 14mm;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+        body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 9.5pt;
+      line-height: 1.25;
+    }
+
+    .page {
+      width: 100%;
+    }
+
+    .header {
+      border-bottom: 2px solid #14233b;
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+    }
+
+    .brand {
+      font-size: 20pt;
+      font-weight: 700;
+      color: #14233b;
+    }
+
+    .document-title {
+      margin-top: 4px;
+      font-size: 12pt;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .seller {
+      margin-top: 10px;
+      font-size: 8.5pt;
+      color: #4b5563;
+    }
+
+    .intro {
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      margin: 14px 0 7px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .party {
+      margin-bottom: 8px;
+    }
+
+    .party strong {
+      font-weight: 700;
+    }
+
+    .vehicle-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 14px;
+    }
+
+    .vehicle-table td {
+      border: 1px solid #d1d5db;
+      padding: 7px 8px;
+      vertical-align: top;
+    }
+
+    .vehicle-table .label {
+      width: 24%;
+      background: #f3f4f6;
+      font-weight: 700;
+    }
+
+    .declaration {
+      margin: 5px 0;
+    }
+
+    .check {
+      display: inline-block;
+      width: 13px;
+      height: 13px;
+      border: 1px solid #374151;
+      margin-right: 5px;
+      vertical-align: -2px;
+      text-align: center;
+      font-size: 9px;
+      line-height: 11px;
+    }
+
+    .warranty-list {
+      margin: 7px 0 7px 18px;
+      padding: 0;
+    }
+
+    .warranty-list li {
+      margin-bottom: 3px;
+    }
+
+    .price {
+      margin: 8px 0;
+      padding: 10px 12px;
+      background: #f3f4f6;
+      border-left: 4px solid #14233b;
+      font-size: 12pt;
+      font-weight: 700;
+    }
+
+    .signatures {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      margin-top: 35px;
+    }
+
+    .signature {
+      width: 48%;
+    }
+
+    .signature-title {
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+
+    .signature-line {
+      border-bottom: 1px solid #374151;
+      height: 35px;
+      margin-bottom: 7px;
+    }
+
+    .signature-field {
+      margin: 8px 0;
+    }
+
+    .footer {
+      margin-top: 18px;
+      padding-top: 8px;
+      border-top: 1px solid #d1d5db;
+      font-size: 8pt;
+      color: #6b7280;
+      text-align: center;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    .small {
+      font-size: 9pt;
+    }
+
+    .entered-value {
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ========================= -->
+  <!-- PAGE 1                    -->
+  <!-- ========================= -->
+
+  <div class="page">
+
+    <header class="header">
+
+      <div class="brand">
+        AUTO ESCANDINAVIA
+      </div>
+
+      <div class="document-title">
+        Contrato de compra-venta y garantía de vehículo de ocasión (V.O.)
+      </div>
+
+      <div class="seller">
+        {{seller.name}} · {{seller.cif}} ·
+        {{seller.address}} · {{seller.phone}} · {{seller.email}}
+      </div>
+
+    </header>
+
+
+    <div class="intro">
+      En <span class="entered-value">{{contract.location}}</span>, a las
+      <strong>{{contract.time}}</strong> horas del día
+      <strong>{{contract.day}}</strong> de
+      <strong>{{contract.month}}</strong> del
+      <strong>{{contract.year}}</strong>.
+    </div>
+
+
+    <div class="section-title">
+      REUNIDOS
+    </div>
+
+
+    <div class="party">
+  <strong>De una parte,</strong>
+  {{seller.name}} (en lo sucesivo, VENDEDOR),
+  con domicilio social en {{seller.address}}.
+</div>
+
+<div class="party">
+  <strong>De otra parte,</strong>
+  DON/DOÑA <span class="entered-value">{{buyer.name}}</span>,
+  con DNI N.º <span class="entered-value">{{buyer.dni}}</span>,
+  mayor de edad, con domicilio en:
+</div>
+
+<table class="vehicle-table">
+
+  <tr>
+    <td class="label">Calle y N.º</td>
+    <td>
+      <span class="entered-value">{{buyer.address}}</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="label">Ciudad</td>
+    <td>
+      <span class="entered-value">{{buyer.city}}</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="label">Código Postal</td>
+    <td>
+      <span class="entered-value">{{buyer.postalCode}}</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="label">Provincia</td>
+    <td>
+      <span class="entered-value">{{buyer.province}}</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="label">N.º de teléfono</td>
+    <td>
+      <span class="entered-value">{{buyer.phone}}</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="label">Correo electrónico</td>
+    <td>
+      <span class="entered-value">{{buyer.email}}</span>
+    </td>
+  </tr>
+
+</table>
+
+
+    <div class="section-title">
+      EXPONEN
+    </div>
+
+
+    <p>
+      <strong>I.-</strong>
+      Que ambas partes de común acuerdo han convenido formalizar la
+      compraventa y garantía legal del vehículo usado cuyas
+      características básicas son las siguientes:
+    </p>
+
+
+    <table class="vehicle-table">
+
+  <tr>
+    <td class="label">MARCA</td>
+    <td>
+      <span class="entered-value">{{vehicle.make}}</span>
+    </td>
+
+    <td class="label">MODELO</td>
+    <td>
+      <span class="entered-value">{{vehicle.model}}</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="label">MATRÍCULA</td>
+    <td>
+      <span class="entered-value">{{vehicle.registration}}</span>
+    </td>
+
+    <td class="label">N.º BASTIDOR</td>
+    <td>
+      <span class="entered-value">{{vehicle.vin}}</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="label">KILOMETRAJE</td>
+    <td>
+      <span class="entered-value">{{vehicle.mileage}}</span> km
+    </td>
+
+    <td class="label">FECHA DE 1.ª MATRICULACIÓN</td>
+    <td>
+      <span class="entered-value">{{vehicle.firstRegistration}}</span>
+    </td>
+  </tr>
+
+</table>
+
+
+    <div class="clause">
+        <strong>II.-</strong>
+        EL VENDEDOR se compromete a hacer entrega al COMPRADOR del automóvil
+        objeto de la presente compraventa, libre de cargas y gravámenes, una
+        vez se hayan completado los trámites administrativos necesarios para
+        su entrega y puesta a disposición del COMPRADOR.
+
+        <p>
+            Para la realización de los trámites necesarios para la transferencia
+            del vehículo, el COMPRADOR deberá aportar, cuando corresponda, la
+            documentación requerida para tal fin. A saber:
+        </p>
+
+        <ul>
+            <li>DNI en vigor.</li>
+            <li>
+            En caso de extranjeros: a) pasaporte en vigor, b) NIE o NIF y
+            c) certificado de empadronamiento con no más de 90 días de
+            antigüedad.
+            </li>
+        </ul>
+    </div>
+
+
+    <p>
+      <strong>III.-</strong>
+      Que el estado del vehículo, en su conjunto y en el de sus
+      elementos y componentes fundamentales, su antigüedad y kilometraje,
+      se recogen en el presente contrato que firman ambas partes.
+    </p>
+
+
+    <p>
+      <strong>IV.-</strong>
+      Que el COMPRADOR manifiesta que:
+    </p>
+
+    <div class="declaration">
+      <span class="check">
+        {{declarations.inspectedMark}}
+      </span>
+      Ha examinado personalmente y directamente el vehículo.
+    </div>
+
+    <div class="declaration">
+      <span class="check">
+        {{declarations.testedMark}}
+      </span>
+      Ha probado el vehículo.
+    </div>
+
+    <div class="declaration">
+      <span class="check">
+        {{declarations.acceptsConditionMark}}
+      </span>
+      Está conforme con el estado interior y exterior del vehículo.
+    </div>
+
+
+    <p>
+      <strong>V.-</strong>
+      Ambas partes se reconocen capacidad legal para este acto,
+      y convienen el presente contrato de compraventa del vehículo
+      mencionado.
+    </p>
+
+
+    <p>
+      <strong>VI.-</strong>
+      El precio de la compraventa, teniendo en cuenta las características
+      del vehículo, su antigüedad y kilometraje, se PACTA de común
+      acuerdo en:
+    </p>
+
+
+    <div class="price">
+  {{sale.priceFormatted}}
+  <br>
+  <span class="small">
+    ({{sale.priceInWords}})
+  </span>
+</div>
+
+  </div>
+
+
+  <!-- ========================= -->
+  <!-- PAGE 2                    -->
+  <!-- ========================= -->
+
+  <div class="page">
+
+    <header class="header">
+
+      <div class="brand">
+        AUTO ESCANDINAVIA
+      </div>
+
+      <div class="document-title">
+        Contrato de compra-venta y garantía de vehículo de ocasión (V.O.)
+      </div>
+
+    </header>
+
+
+    <p>
+      <strong>VII.-</strong>
+      Quedan cubiertas con garantía de 12 meses, la sustitución o
+      reparación, incluida mano de obra e impuestos, exclusivamente de:
+    </p>
+
+
+    <ul class="warranty-list">
+
+      <li>
+        <strong>Motor:</strong>
+        Pistones, bielas, cigüeñal, polea de cigüeñal, árbol de levas,
+        culata, eje de balancines, bloque motor, bomba de aceite,
+        válvulas, segmentos, cadena de distribución y taqués.
+      </li>
+
+      <li>
+        <strong>Caja de cambios:</strong>
+        Árboles, piñones, anillos de sincronización, horquillas selectoras.
+      </li>
+
+    </ul>
+
+
+    <p>
+      Cualquier supuesta avería deberá ser comunicada siguiendo siempre
+      el procedimiento que se le indica en el siguiente Anexo
+      “PROCEDIMIENTO DE RECLAMACIÓN”.
+    </p>
+
+
+    <div class="clause">
+  <strong>VIII.-</strong>
+  Una vez firmado el presente contrato y confirmado el pago acordado,
+  el COMPRADOR adquirirá la condición de comprador del vehículo,
+  quedando la transmisión administrativa del mismo sujeta a la
+  realización de los trámites correspondientes.
+
+  <p>
+    La puesta a disposición y entrega efectiva del vehículo al COMPRADOR
+    se realizará una vez completados los trámites administrativos
+    necesarios para su entrega.
+  </p>
+
+  <p>
+    A partir de la fecha y hora de la <strong>entrega efectiva del
+    vehículo</strong>, el COMPRADOR asumirá las responsabilidades y
+    obligaciones derivadas de su posesión y utilización como mínimo:
+  </p>
+
+  <ul>
+    <li>
+      La suscripción de una póliza de seguro de Responsabilidad Civil
+      Obligatoria.
+    </li>
+    <li>
+      El pago de las sanciones imputables al vehículo que se produzcan
+      con posterioridad a la fecha y hora de su entrega efectiva.
+    </li>
+  </ul>
+
+  <p>
+    De conformidad se firman dos copias y a un solo efecto.
+  </p>
+</div>
+
+
+
+    <div class="signatures">
+
+      <div class="signature">
+
+        <div class="signature-title">
+          EL COMPRADOR
+        </div>
+
+        <div class="signature-field">
+  D./Doña.: <span class="entered-value">{{buyer.name}}</span>
+</div>
+
+<div class="signature-field">
+  DNI: <span class="entered-value">{{buyer.dni}}</span>
+</div>
+
+        <div class="signature-line"></div>
+
+        <div class="small">
+          Firma
+        </div>
+
+      </div>
+
+
+      <div class="signature">
+
+        <div class="signature-title">
+          EL VENDEDOR
+        </div>
+
+        <div class="signature-field">
+          D./Doña.: {{seller.name}}
+        </div>
+
+        <div class="signature-field">
+          CIF/NIF: {{seller.cif}}
+        </div>
+
+        <div class="signature-line"></div>
+
+        <div class="small">
+          Firma
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="footer">
+      AUTO ESCANDINAVIA · {{seller.address}} ·
+      {{seller.phone}} · {{seller.email}}
+    </div>
+
+  </div>
+
+    <!-- ========================= -->
+  <!-- PAGE 3                    -->
+  <!-- PROCEDIMIENTO DE RECLAMACIÓN -->
+  <!-- ========================= -->
+
+  <div class="page page-break">
+
+    <header class="header">
+
+      <div class="brand">
+        AUTO ESCANDINAVIA
+      </div>
+
+      <div class="document-title">
+        Procedimiento de reclamación
+      </div>
+
+      <div class="seller">
+        {{seller.name}} · {{seller.cif}} ·
+        {{seller.address}} · {{seller.phone}} · {{seller.email}}
+      </div>
+
+    </header>
+
+
+    <p>
+      El presente procedimiento establece el sistema de comunicación y
+      gestión de incidencias relacionado con el vehículo objeto del
+      presente contrato y con la garantía comercial ofrecida al
+      COMPRADOR.
+    </p>
+
+
+    <div class="section-title">
+      1. Primeros 15 días naturales desde la entrega
+    </div>
+
+    <p>
+      Cualquier incidencia, avería o posible falta de conformidad que se
+      manifieste durante los primeros <strong>15 días naturales desde la
+      entrega del vehículo</strong> deberá ser comunicada inicialmente a
+      <strong>AUTO ESCANDINAVIA</strong>, utilizando los datos de contacto
+      indicados en el presente contrato.
+    </p>
+
+    <p>
+      AUTO ESCANDINAVIA realizará una primera valoración de la incidencia
+      y, cuando corresponda, coordinará las actuaciones necesarias para
+      su diagnóstico y gestión.
+    </p>
+
+
+    <div class="section-title">
+      2. Desde el día 16 hasta la finalización del periodo de garantía
+    </div>
+
+    <p>
+      A partir del decimosexto día desde la entrega y durante el periodo
+      de garantía comercial de <strong>12 meses</strong>, las incidencias
+      que correspondan a la garantía comercial serán gestionadas
+      directamente a través de <strong>Auto Cares</strong>, conforme al
+      contrato y condiciones de garantía que dicha entidad entrega al
+      COMPRADOR.
+    </p>
+
+
+    <div class="section-title">
+      3. Contrato de garantía Auto Cares
+    </div>
+
+    <p>
+      El contrato de garantía de <strong>Auto Cares</strong> se formalizará
+      en la fecha de entrega del vehículo y será entregado al COMPRADOR
+      por medios electrónicos, mediante <strong>WhatsApp y/o correo
+      electrónico</strong>.
+    </p>
+
+    <p>
+      Dicho contrato contendrá las condiciones específicas de la garantía,
+      incluyendo su cobertura, exclusiones, procedimiento de reclamación
+      y demás condiciones aplicables.
+    </p>
+
+
+    <div class="section-title">
+      4. Diagnóstico y autorización
+    </div>
+
+    <p>
+      El COMPRADOR deberá seguir el procedimiento de comunicación,
+      diagnóstico y autorización establecido por la entidad responsable
+      de la gestión de la garantía antes de realizar reparaciones que
+      deban ser cubiertas por dicha garantía.
+    </p>
+
+
+    <div class="section-title">
+      5. Reparaciones no autorizadas
+    </div>
+
+    <p>
+      La realización de reparaciones por iniciativa del COMPRADOR, sin
+      comunicación previa y sin la correspondiente autorización cuando
+      esta resulte necesaria conforme a las condiciones de la garantía
+      comercial, podrá afectar a la cobertura de dichas reparaciones.
+    </p>
+
+    <p>
+      Lo anterior se entiende sin perjuicio de los derechos que
+      correspondan al consumidor en materia de garantía legal de
+      conformidad.
+    </p>
+
+
+    <div class="section-title">
+      6. Documentación
+    </div>
+
+    <p>
+      Para la correcta gestión de una incidencia, el COMPRADOR deberá
+      facilitar, cuando sea solicitado:
+    </p>
+
+    <ul class="warranty-list">
+      <li>Documento identificativo.</li>
+      <li>Contrato de compraventa.</li>
+      <li>Documentación del vehículo.</li>
+      <li>Descripción de la incidencia.</li>
+      <li>Kilometraje del vehículo.</li>
+      <li>Fotografías, vídeos o documentación técnica cuando resulte necesario.</li>
+      <li>Presupuesto o diagnóstico de reparación, cuando proceda.</li>
+    </ul>
+
+
+    <div class="section-title">
+      7. Asistencia en carretera
+    </div>
+
+    <p>
+      Cuando el vehículo presente una avería que pueda comprometer la
+      seguridad de la circulación, el COMPRADOR deberá detener el
+      vehículo en un lugar seguro y utilizar los servicios de asistencia
+      correspondientes.
+    </p>
+
+    <p>
+      No deberá continuar circulando cuando hacerlo pueda provocar daños
+      adicionales al vehículo o poner en riesgo a sus ocupantes.
+    </p>
+
+
+    <div class="section-title">
+      8. Derechos legales del consumidor
+    </div>
+
+    <p>
+      El presente procedimiento regula la gestión de las incidencias y
+      de la garantía comercial, pero <strong>no limita, excluye ni
+      modifica los derechos que legalmente correspondan al COMPRADOR en
+      materia de garantía legal de conformidad</strong>.
+    </p>
+
+
+    <div class="price small">
+      <strong>Garantía comercial:</strong> 12 meses<br>
+      <strong>Gestión inicial de incidencias:</strong>
+      AUTO ESCANDINAVIA durante los primeros 15 días naturales desde la
+      entrega<br>
+      <strong>Gestión posterior:</strong> Auto Cares conforme a su
+      contrato de garantía
+    </div>
+
+
+    <div class="footer">
+      AUTO ESCANDINAVIA · {{seller.address}} ·
+      {{seller.phone}} · {{seller.email}}
+    </div>
+
+  </div>
+
+</body>
+</html>
