@@ -11,14 +11,25 @@ const path = require("node:path");
 const fs = require("node:fs");
 const { spawn } = require("node:child_process");
 
-const FACTURIX_EXE = path.join(
-  __dirname,
-  "..",
-  "Facturix",
-  "release",
-  "win-unpacked",
-  "Facturix Invoicing System.exe"
-);
+const FACTURIX_EXE = app.isPackaged
+  ? path.join(
+      path.dirname(process.execPath),
+      "..",
+      "..",
+      "..",
+      "Facturix",
+      "release",
+      "win-unpacked",
+      "Facturix Invoicing System.exe"
+    )
+  : path.join(
+      __dirname,
+      "..",
+      "Facturix",
+      "release",
+      "win-unpacked",
+      "Facturix Invoicing System.exe"
+    );
 
 const { renderContract } = require("./src/services/template");
 
