@@ -7,6 +7,8 @@ const {
   dialog,
 } = require("electron");
 
+app.setAppUserModelId("com.autoescandinavia.contrix");
+
 const path = require("node:path");
 const fs = require("node:fs");
 const { spawn } = require("node:child_process");
@@ -294,6 +296,12 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 1200,
     height: 800,
+
+    icon: path.join(
+      __dirname,
+      "build",
+      "contrix.ico"
+    ),
 
     webPreferences: {
       contextIsolation: true,
