@@ -11,25 +11,29 @@ const path = require("node:path");
 const fs = require("node:fs");
 const { spawn } = require("node:child_process");
 
-const FACTURIX_EXE = app.isPackaged
-  ? path.join(
-      path.dirname(process.execPath),
-      "..",
-      "..",
-      "..",
-      "Facturix",
-      "release",
-      "win-unpacked",
-      "Facturix Invoicing System.exe"
-    )
-  : path.join(
-      __dirname,
-      "..",
-      "Facturix",
-      "release",
-      "win-unpacked",
-      "Facturix Invoicing System.exe"
-    );
+function getFacturixExe() {
+  const developmentPath = path.join(
+    __dirname,
+    "..",
+    "Facturix",
+    "release",
+    "win-unpacked",
+    "Facturix Invoicing System.exe"
+  );
+
+  const installedPath = path.join(
+    process.env.LOCALAPPDATA,
+    "Programs",
+    "FACTURIX",
+    "Facturix Invoicing System.exe"
+  );
+
+  if (app.isPackaged) {
+    return installedPath;
+  }
+
+  return developmentPath;
+}
 
 const { renderContract } = require("./src/services/template");
 
@@ -51,6 +55,15 @@ ipcMain.handle("seller:get", () => {
 
 ipcMain.handle("facturix:launch", async (_event, contractData) => {
   try {
+    const facturixExe = getFacturixExe();
+
+    if (!fs.existsSync(facturixExe)) {
+      return {
+        launched: false,
+        error: `Facturix no encontrado en:\n${facturixExe}`,
+      };
+    }
+
     const contractFile = path.join(
       app.getPath("temp"),
       "autoescandinavia-contract.json"
@@ -63,7 +76,7 @@ ipcMain.handle("facturix:launch", async (_event, contractData) => {
     );
 
     const facturix = spawn(
-      FACTURIX_EXE,
+      facturixExe,
       [`--contract-file=${contractFile}`],
       {
         detached: true,
@@ -71,11 +84,24 @@ ipcMain.handle("facturix:launch", async (_event, contractData) => {
       }
     );
 
+    const launchResult = await new Promise((resolve) => {
+      facturix.once("error", (error) => {
+        resolve({
+          launched: false,
+          error: error.message,
+        });
+      });
+
+      facturix.once("spawn", () => {
+        resolve({
+          launched: true,
+        });
+      });
+    });
+
     facturix.unref();
 
-    return {
-      launched: true,
-    };
+    return launchResult;
   } catch (error) {
     console.error("Error launching Facturix:", error);
 
