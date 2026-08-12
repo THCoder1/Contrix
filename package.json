@@ -1,7 +1,7 @@
 {
   "name": "contrix",
   "version": "1.0.0",
-  "description": "",
+  "description": "Vehicle contract management system for Auto Escandinavia",
   "main": "main.js",
   "scripts": {
   "start": "electron .",
